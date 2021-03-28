@@ -24,6 +24,11 @@ var cx = 0;
 var cy = 0;
 var cr = 0.3; // 0.2;
 
+var points = 0;
+var errors = 0;
+var mx = 0;
+var my = 0;
+
 var coordinate_scale = 0.8;
 
 var animatedraw = true;
@@ -68,10 +73,10 @@ function draw() {
 
       page = int(table.getString(r, 1));
 
-      var x0 = coordinate_scale*int(table.getString(r, 3));
-      var y0 = coordinate_scale*int(table.getString(r, 4));
-      var x1 = coordinate_scale*int(table.getString(r, 5));
-      var y1 = coordinate_scale*int(table.getString(r, 6));
+      var x0 = coordinate_scale * int(table.getString(r, 3));
+      var y0 = coordinate_scale * int(table.getString(r, 4));
+      var x1 = coordinate_scale * int(table.getString(r, 5));
+      var y1 = coordinate_scale * int(table.getString(r, 6));
       var w0 = int(table.getString(r, 7));
       var r0 = int(table.getString(r, 9));
       var g0 = int(table.getString(r, 10));
@@ -99,10 +104,24 @@ function draw() {
 
       if (animatedraw) animatedrawout = !animatedrawout;
 
+      mx = x1 + cx;
+      my = y1 + cy;
+
+
+
     }
     if (edpage != page) {
       background(255);
       edpage = page;
+
+      stroke(255, 0, 0);
+      textSize(25);
+      textAlign(CENTER, CENTER);
+      strokeWeight(1);
+
+      var yht = round(1000*int(points) /  (int(points) + int(errors)))/10;
+      if (int(points)>0) text(yht + " %", width * 0.5, height - 60);
+
       // 0delayTime(1000);
     }
     // r++;
@@ -197,6 +216,14 @@ function touchMoved() {
 
   cx = cx + randomGaussian() * cr; //random(-4,4);
   cy = cy + randomGaussian() * cr; // random(-4,4);
+
+  if (((mouseX - mx) < 50) & (mouseY - my) < 50) {
+    points = points + 1;
+  } else {
+    errors = errors + 1;
+  }
+
+
 }
 
 // this function fires with any double click anywhere
