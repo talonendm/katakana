@@ -24,6 +24,8 @@ var cx = 0;
 var cy = 0;
 var cr = 0.3; // 0.2;
 
+var coordinate_scale = 0.8;
+
 var animatedraw = true;
 var animatedrawout = animatedraw;
 var animateonlyoneline = false;
@@ -66,10 +68,10 @@ function draw() {
 
       page = int(table.getString(r, 1));
 
-      var x0 = int(table.getString(r, 3));
-      var y0 = int(table.getString(r, 4));
-      var x1 = int(table.getString(r, 5));
-      var y1 = int(table.getString(r, 6));
+      var x0 = coordinate_scale*int(table.getString(r, 3));
+      var y0 = coordinate_scale*int(table.getString(r, 4));
+      var x1 = coordinate_scale*int(table.getString(r, 5));
+      var y1 = coordinate_scale*int(table.getString(r, 6));
       var w0 = int(table.getString(r, 7));
       var r0 = int(table.getString(r, 9));
       var g0 = int(table.getString(r, 10));
