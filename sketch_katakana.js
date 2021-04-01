@@ -39,7 +39,8 @@ var animateonlyoneline = false;
 function preload() {
   //my table is comma separated value "csv"
   //and has a header specifying the columns labels
-  table = loadTable('csv/hiragana1.csv', 'csv', 'header');
+  //table = loadTable('csv/hiragana1.csv', 'csv', 'header');
+  table = loadTable('csv/kanji_v1.csv', 'csv', 'header');
   // table = loadTable('peruna2.csv', 'csv', 'header');
   //the file can be remote
   //table = loadTable("http://p5js.org/reference/assets/mammals.csv",
